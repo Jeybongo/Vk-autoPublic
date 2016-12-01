@@ -20,7 +20,7 @@ namespace VkPoster
         }
 
         //returns next photo for posting
-        File getNextPhoto()
+        String getNextPhoto()
         {
             return null;
         }
