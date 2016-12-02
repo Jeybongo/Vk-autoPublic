@@ -9,7 +9,7 @@ namespace VkPoster
 {
     class FolderWorker
     {
-        private List<String> _photos;
+        private List<FileInfo> _photos;
         private String _path;
 
         public FolderWorker(String path)
@@ -20,15 +20,26 @@ namespace VkPoster
         }
 
         //returns next photo for posting
-        String getNextPhoto()
+        FileInfo getNextPhoto()
         {
-            return null;
+            if (_photos.Count == 0)
+            {
+                return null;
+            }
+
+            FileInfo nextFile = _photos[0];
+            _photos.Remove(nextFile);
+            return nextFile;
         }
 
         //gets all photos from folder
         private void parseAllPhotos()
         {
-
+            DirectoryInfo di = new DirectoryInfo(_path);
+           _photos = di.GetFiles("*.png", SearchOption.AllDirectories)
+                .Union(di.GetFiles("*.jpg"))
+                .Union(di.GetFiles("*.jpeg"))
+                .ToList();
         }
     }
 }

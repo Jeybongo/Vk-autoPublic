@@ -23,7 +23,7 @@ namespace VkPoster
         {
             _timer = new Timer();
             _timer.Elapsed += new ElapsedEventHandler(this.tick);
-            _timer.Interval = _interval * 60 * 1000 * 60;                                            // hour -> minutes -> seconds -> milliseconds 
+            _timer.Interval = _interval * 60 * 60 * 1000;                                            // hour -> minutes -> seconds -> milliseconds 
             _timer.Enabled = true;
         }
 
