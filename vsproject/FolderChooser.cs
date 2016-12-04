@@ -16,19 +16,13 @@ namespace VkPoster
 
             while (true)
             {
+                DialogResult result = fbd.ShowDialog();
 
+                if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    return fbd.SelectedPath;
+                }
             }
-            DialogResult result = fbd.ShowDialog();
-
-            if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
-            {
-                string[] files = Directory.GetFiles(fbd.SelectedPath);
-
-                System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
-
-            }
-
-            return null;
         }
     }
 }
