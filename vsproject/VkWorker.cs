@@ -17,22 +17,17 @@ namespace VkPoster
         private String _token;
         private String _publicId;
 
-        //for authorization
-        public bool auth()
-        {
-            return true;
-        }
-
-        //choose public for posting
-        public bool choosePublic()
-        {
-            return true;
-        }
-
         //post photo with path to public
         public bool post(FileInfo fileInfo)
         {
             return true;
+        }
+
+        static public List<VkCommunity> fetchAdminCommunities()
+        {
+            List<VkCommunity> comm = new List<VkCommunity>();
+
+            return comm;
         }
     }
 }
