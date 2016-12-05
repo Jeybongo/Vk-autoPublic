@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,11 +61,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomTimer.cs" />
     <Compile Include="RegularTimer.cs" />
+    <Compile Include="VKAPI.cs" />
     <Compile Include="VkAuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VkAuthForm.Designer.cs">
       <DependentUpon>VkAuthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VkCommunity.cs" />
+    <Compile Include="VkPublicChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VkPublicChooser.Designer.cs">
+      <DependentUpon>VkPublicChooser.cs</DependentUpon>
     </Compile>
     <Compile Include="VkWorker.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -79,6 +91,10 @@
     <EmbeddedResource Include="VkAuthForm.resx">
       <DependentUpon>VkAuthForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VkPublicChooser.resx">
+      <DependentUpon>VkPublicChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

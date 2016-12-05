@@ -15,6 +15,14 @@ namespace VkPoster
         public MainForm()
         {
             InitializeComponent();
+
+            if (!VKAPI.isReady()) 
+            {
+                VkAuthForm form = new VkAuthForm();
+                form.ShowDialog();
+            }
+
+            VKAPI.getAdminCommunities();
         }
     }
 }

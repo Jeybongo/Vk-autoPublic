@@ -47,8 +47,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 564);
             this.Controls.Add(this.webBrowser1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VkAuthForm";
-            this.Text = "VkAuthForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Авторизация";
             this.ResumeLayout(false);
 
         }

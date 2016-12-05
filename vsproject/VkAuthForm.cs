@@ -47,6 +47,10 @@ namespace VkPoster
 
             _token = token;
             _uid = getParamValue(currUrl, "user_id");
+
+            VKAPI.setToken(_token);
+            VKAPI.setUid(_uid);
+
             stop();
         }
 
