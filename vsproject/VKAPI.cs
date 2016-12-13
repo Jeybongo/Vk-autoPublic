@@ -11,11 +11,23 @@ namespace VkPoster
 {
     class VKAPI
     {
-        static private String _uid = "";
-        static private String _token = "";
-
-        static private String VK_API_URL = "https://api.vk.com/method/";
-        static private String GET_ADMIN_COMMUNITIES_METHOD = "groups.get?filter=admin&extended=1";
+        //user id
+        static protected String _uid = "";
+        
+        //token for API
+        static protected String _token = "";
+        
+        //group id for uploading
+        static protected String _cid = "";
+        
+        //main domain
+        static protected String VK_API_URL = "https://api.vk.com/method/";
+        
+        //method for retrieve admin coomunities
+        static protected String GET_ADMIN_COMMUNITIES_METHOD = "groups.get?filter=admin&extended=1";
+        
+        //method for posting to the wall
+        static protected String WALL_POST_METHOD = "wall.post?from_group=1";
 
         static public void setUid(String uid)
         {
@@ -25,6 +37,11 @@ namespace VkPoster
         static public void setToken(String token)
         {
             VKAPI._token = token;
+        }
+
+        static public void setCommunityId(String id)
+        {
+            VKAPI._cid = id;
         }
 
         static public bool isReady()
@@ -56,8 +73,22 @@ namespace VkPoster
             return res;
         }
 
-        static private String makeRequest(String url)
+        static public bool postPhoto(FileInfo photo) 
         {
+            String photoId = new PhotoUploader(photo).upload();
+            if (photoId.Length == 0)
+            {
+                return false;
+            }
+
+            String url = VK_API_URL + WALL_POST_METHOD + "&owner_id=-" + _cid + "&attachments=" + photoId;
+            String resp = VKAPI.makeRequest(url);
+            return true;
+        }
+
+        static protected String makeRequest(String url)
+        {
+            url += "&access_token=" + _token;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             if (response.StatusCode == HttpStatusCode.OK)
@@ -72,7 +103,7 @@ namespace VkPoster
             return "{}";
         }
 
-        static private dynamic parseJson(String jsonString)
+        static protected dynamic parseJson(String jsonString)
         {
             try
             {

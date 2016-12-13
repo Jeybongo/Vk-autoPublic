@@ -21,8 +21,6 @@ namespace VkPoster
                 VkAuthForm form = new VkAuthForm();
                 form.ShowDialog();
             }
-
-            VKAPI.getAdminCommunities();
         }
     }
 }

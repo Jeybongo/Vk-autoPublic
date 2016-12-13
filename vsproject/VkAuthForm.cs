@@ -14,7 +14,7 @@ namespace VkPoster
     public partial class VkAuthForm : Form
     {
 
-        private const String AUTH_URL = "http://oauth.vk.com/authorize?client_id=5759618&scope=wall, groups,offline&display=page&response_type=token";
+        private const String AUTH_URL = "http://oauth.vk.com/authorize?client_id=5759618&scope=photos,wall,groups,offline&display=page&response_type=token";
         private String _token = "";
         private String _uid = "";
 
