@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VkPoster
 {
-    class VkCommunity
+    public class VkCommunity
     {
         private String _name;
         private String _id;

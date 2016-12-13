@@ -21,6 +21,9 @@ namespace VkPoster
                 VkAuthForm form = new VkAuthForm();
                 form.ShowDialog();
             }
+
+            VkPublicChooser chooser = new VkPublicChooser();
+            VkCommunity comm = chooser.chooseCommunity();
         }
     }
 }

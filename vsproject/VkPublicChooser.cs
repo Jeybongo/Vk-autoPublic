@@ -15,15 +15,28 @@ namespace VkPoster
         private const String CREATE_PUBLIC_URL = "https://m.vk.com/groups?act=new";
 
         private List<VkCommunity> _communities;
+        private VkCommunity _choosen;
 
         public VkPublicChooser()
         {
             InitializeComponent();
-
-            _communities = VkWorker.fetchAdminCommunities();
         }
 
-        private void noPublics()
+        public VkCommunity chooseCommunity()
+        {
+            //retrieve admin communities
+            getCommunities();
+
+            //show us
+            this.ShowDialog();
+
+            //choosen community
+            return _choosen;
+        }
+
+
+        //go out
+        private void noCommunities()
         {
             DialogResult result = MessageBox.Show("У Вас нет своих сообществ, нужно создать.", "Сообщества", MessageBoxButtons.OK);
             if (result == DialogResult.OK)
@@ -32,6 +45,32 @@ namespace VkPoster
             }
 
             Environment.Exit(0);
+        }
+
+        private void getCommunities()
+        {
+            _communities = VKAPI.getAdminCommunities();
+
+            //has no communities with admin rights
+            if (_communities.Count == 0)
+            {
+                noCommunities();
+                return;
+            }
+
+            fillData();
+        }
+
+        private void fillData()
+        {
+            communitiesComboBox.DataSource = _communities;
+            communitiesComboBox.DisplayMember = "Name";
+        }
+
+        private void chooseButton_Click(object sender, EventArgs e)
+        {
+            _choosen = _communities[communitiesComboBox.SelectedIndex];
+            this.Close();
         }
     }
 }

@@ -22,12 +22,5 @@ namespace VkPoster
         {
             return true;
         }
-
-        static public List<VkCommunity> fetchAdminCommunities()
-        {
-            List<VkCommunity> comm = new List<VkCommunity>();
-
-            return comm;
-        }
     }
 }
