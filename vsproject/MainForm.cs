@@ -40,7 +40,7 @@ namespace VkPoster
             }
 
             nextPictureBox.ImageLocation = photo.FullName;
-            nextPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            nextPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void postButton_Click(object sender, EventArgs e)
