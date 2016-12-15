@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace VkPoster
 {
@@ -12,6 +13,13 @@ namespace VkPoster
         private List<FileInfo> _photos;
         private String _path;
 
+        public FolderWorker()
+        {
+            _path = chooseFolder();
+
+            parseAllPhotos();
+        }
+
         public FolderWorker(String path)
         {
             _path = path;
@@ -19,9 +27,14 @@ namespace VkPoster
             parseAllPhotos();
         }
 
+        public String getPath()
+        {
+            return _path;
+        }
+
         //returns next photo for posting
         //if remove = true it removes photo from the storage
-        FileInfo getNextPhoto(bool remove = false)
+        public FileInfo getNextPhoto(bool remove = false)
         {
             if (_photos.Count == 0)
             {
@@ -34,6 +47,22 @@ namespace VkPoster
                 _photos.Remove(nextFile);
             }
             return nextFile;
+        }
+
+        //gets from user folder with photos for posting
+        private String chooseFolder()
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+            while (true)
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    return fbd.SelectedPath;
+                }
+            }
         }
 
         //gets all photos from folder

@@ -71,6 +71,7 @@ namespace VkPoster
 
         private void chooseButton_Click(object sender, EventArgs e)
         {
+            //set community before closing
             _choosen = _communities[communitiesComboBox.SelectedIndex];
             this.Close();
         }

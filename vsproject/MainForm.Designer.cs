@@ -104,6 +104,8 @@
             // regularCheckBox
             // 
             this.regularCheckBox.AutoSize = true;
+            this.regularCheckBox.Checked = true;
+            this.regularCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.regularCheckBox.Location = new System.Drawing.Point(27, 193);
             this.regularCheckBox.Name = "regularCheckBox";
             this.regularCheckBox.Size = new System.Drawing.Size(198, 29);

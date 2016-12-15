@@ -14,8 +14,13 @@ namespace VkPoster
     {
         public event PhotoPosted onPost;
 
-        public void start() 
+        private FolderWorker _fbdWorker;
+        private VkCommunity _community;
+        private ITimer _timer;
+
+        public VkWorker()
         {
+
             if (!VKAPI.isReady())
             {
                 VkAuthForm form = new VkAuthForm();
@@ -23,41 +28,54 @@ namespace VkPoster
             }
 
             VkPublicChooser chooser = new VkPublicChooser();
-            VkCommunity comm = chooser.chooseCommunity();
+            _community = chooser.chooseCommunity();
+            VKAPI.setCommunityId(_community.ID);
+
+            _fbdWorker = new FolderWorker();
         }
 
         //sets timer for posting
         public void setTimer(ITimer timer)
         {
-            //TODO: implement me
+            //remove this from prev timer
+            if (_timer != null)
+            {
+                _timer.onTimer -= this.postNext;
+                _timer.stop();
+            }
+
+            //set new timer
+            _timer = timer;
+            _timer.onTimer += this.postNext;
+            _timer.start();
         }
 
         //returns folder path
-        public String getFodlerPath()
+        public String getFolderPath()
         {
-            //TODO: implement me
-            return "";
+            return _fbdWorker.getPath();
         }
 
         //returns community
         public VkCommunity getCommunity()
         {
-            //TODO: implement me
-            return null;
+            return _community;
         }
 
         //post photo with path to public
-        public bool postNext()
+        public void postNext()
         {
-            //TODO: implement me
-            return true;
+            FileInfo nextPhoto = _fbdWorker.getNextPhoto(true);
+            if (nextPhoto != null && VKAPI.postPhoto(nextPhoto))
+            {
+                onPost();
+            }
         }
 
         //returns nextPhoto
         public FileInfo getNext()
         {
-            //TODO: implement me
-            return null;
+            return _fbdWorker.getNextPhoto();
         }
 
     }

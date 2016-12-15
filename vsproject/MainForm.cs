@@ -21,8 +21,6 @@ namespace VkPoster
 
             _worker = new VkWorker();
             _worker.onPost += this.photoPosted;
-
-            _worker.start();
         }
 
         //some photo were posted
@@ -82,7 +80,7 @@ namespace VkPoster
             VkCommunity comm = _worker.getCommunity();
             commLabel.Text = comm.Name;
 
-            String folderPath = _worker.getFodlerPath();
+            String folderPath = _worker.getFolderPath();
             folderLabel.Text = folderPath;
         }
 
