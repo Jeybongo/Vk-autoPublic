@@ -25,10 +25,26 @@ namespace VkPoster
             {
                 VkAuthForm form = new VkAuthForm();
                 form.ShowDialog();
+
+                //user doesn't want to continue (close app or no auth)
+                if (!VKAPI.isReady())
+                {
+                    //close the app
+                    Environment.Exit(0);
+                }
             }
 
             VkPublicChooser chooser = new VkPublicChooser();
             _community = chooser.chooseCommunity();
+            
+            //user closed the window
+            if (_community == null)
+            {
+                //close the app
+                Environment.Exit(0);
+            }
+
+
             VKAPI.setCommunityId(_community.ID);
 
             _fbdWorker = new FolderWorker();
