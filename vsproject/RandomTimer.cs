@@ -12,12 +12,10 @@ namespace VkPoster
         public event TimerHandler onTimer;
 
         private Timer _timer;
-        private int _frequency;
         Random rand;
 
-        public RandomTimer(int frequency)
+        public RandomTimer()
         {
-            _frequency = frequency;
             rand = new Random();
         }
 

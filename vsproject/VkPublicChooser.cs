@@ -41,9 +41,11 @@ namespace VkPoster
             DialogResult result = MessageBox.Show("У Вас нет своих сообществ, нужно создать.", "Сообщества", MessageBoxButtons.OK);
             if (result == DialogResult.OK)
             {
+                //opens link in default browser
                 System.Diagnostics.Process.Start(CREATE_PUBLIC_URL);
             }
 
+            //close the programm
             Environment.Exit(0);
         }
 

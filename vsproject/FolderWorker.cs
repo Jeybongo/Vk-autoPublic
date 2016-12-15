@@ -20,7 +20,8 @@ namespace VkPoster
         }
 
         //returns next photo for posting
-        FileInfo getNextPhoto()
+        //if remove = true it removes photo from the storage
+        FileInfo getNextPhoto(bool remove = false)
         {
             if (_photos.Count == 0)
             {
@@ -28,7 +29,10 @@ namespace VkPoster
             }
 
             FileInfo nextFile = _photos[0];
-            _photos.Remove(nextFile);
+            if (remove)
+            {
+                _photos.Remove(nextFile);
+            }
             return nextFile;
         }
 

@@ -71,6 +71,7 @@
             this.Controls.Add(this.communitiesComboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VkPublicChooser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выберите группу";
             this.ResumeLayout(false);
             this.PerformLayout();
